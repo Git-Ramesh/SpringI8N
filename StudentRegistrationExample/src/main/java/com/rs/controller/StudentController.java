@@ -13,6 +13,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -91,7 +92,7 @@ public class StudentController {
 		return citiesList;
 	}
 	//Specific to controller
-	@ExceptionHandler(RuntimeException.class)
+	/*@ExceptionHandler(RuntimeException.class)
 	  public ModelAndView handleError(HttpServletRequest req, Exception ex) {
 
 	    ModelAndView mav = new ModelAndView();
@@ -99,5 +100,5 @@ public class StudentController {
 	    mav.addObject("url", req.getRequestURL());
 	    mav.setViewName("runtime_error");
 	    return mav;
-	  }
+	  }*/
 }
