@@ -22,21 +22,23 @@
 	</style>
 </head>
 <body>
-	<h1 style="color:black;text-align:center;">Student Registration Form</h1>
+	<h1 style="color:black;text-align:center;"><spring:message code="label.registrationpage.header"/></h1>
 	<%-- <div class="error">
 		<form:errors path="student.*"/>
 	</div> --%>
+	<h3 align="center"><a href="?lang=en">Englisg</a> | 
+	<a href="?lang=fr">French</a></h3>
 	<form:form action="/StudentRegistrationExample/registerSuccess" method="POST" commandName="student">
 		<table align="center" width="400">
 			<tr>
-				<td>StudentName: </td>
+				<td><spring:message code="label.studentName"/></td>
 				<td><form:input path="studentName"/></td>
 				<td>
 					<form:errors path="studentName" cssStyle="color:red;"/>
 				</td>
 			</tr>
 			<tr>
-				<td>Gender: </td>
+				<td><spring:message code="label.gender"/> </td>
 				<td>
 					<form:radiobuttons path="gender" items="${genders}" />
 				</td>
@@ -45,7 +47,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Technologies: </td>
+				<td><spring:message code="label.technologies"></spring:message></td>
 				<td>
 					<form:select path="technologies" multiple="true">
 						<form:options items="${technologies}"/>
@@ -56,7 +58,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>City: </td>
+				<td><spring:message code="label.city"/> </td>
 				<td>
 					<form:select path="city">
 						<form:option value="">City</form:option>
@@ -68,14 +70,14 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Phone: </td>
+				<td><spring:message code="label.phone"/></td>
 				<td><form:input path="phone"/></td>
 				<td>
 					<form:errors path="phone" cssStyle="color:red;"/>
 				</td>
 			</tr>
 			<tr>
-				<td>DOB</td>
+				<td><spring:message code="label.dob"/> </td>
 				<td><form:input path="dob"/>(yyyy-MM-dd)</td>
 				<td>
 					<form:errors path="dob" cssStyle="color:red;"/>
