@@ -44,6 +44,7 @@ public class StudentController {
 	}
 	@RequestMapping(value="/registerSuccess",method=RequestMethod.POST)
 	public String loginSuccess(Map<String,Object> map,@Valid @ModelAttribute("student")Student student,BindingResult results ) {
+		//Throw the exception here
 		if(student.getStudentName().equals("RAMESH"))
 			throw new RuntimeException("Programmer Exception to test error page");
 		if(results.hasErrors())
