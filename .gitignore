@@ -24,8 +24,8 @@ hs_err_pid*
 .settings
 .classpath
 .target/*
-.target/*.*
 .springBeans
 target
 ._
+/pom.properties
 pom.properties
