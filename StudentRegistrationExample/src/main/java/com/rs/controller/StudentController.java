@@ -41,6 +41,7 @@ public class StudentController {
 	}
 	@RequestMapping(value="/registerSuccess",method=RequestMethod.POST)
 	public String loginSuccess(Map<String,Object> map,@Valid@ModelAttribute("student")Student student,BindingResult results ) {
+		//Throw the exception here
 		if(results.hasErrors())
 			return "register";
 		System.out.println(student);
