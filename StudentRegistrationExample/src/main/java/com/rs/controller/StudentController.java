@@ -1,21 +1,24 @@
 package com.rs.controller;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rs.command.Student;
 import com.rs.editor.StudentNameEditor;
@@ -40,7 +43,9 @@ public class StudentController {
 		return "register";
 	}
 	@RequestMapping(value="/registerSuccess",method=RequestMethod.POST)
-	public String loginSuccess(Map<String,Object> map,@Valid@ModelAttribute("student")Student student,BindingResult results ) {
+	public String loginSuccess(Map<String,Object> map,@Valid @ModelAttribute("student")Student student,BindingResult results ) {
+		if(student.getStudentName().equals("RAMESH"))
+			throw new RuntimeException("Programmer Exception to test error page");
 		if(results.hasErrors())
 			return "register";
 		System.out.println(student);
@@ -84,4 +89,14 @@ public class StudentController {
 		
 		return citiesList;
 	}
+	//Specific to controller
+	@ExceptionHandler(RuntimeException.class)
+	  public ModelAndView handleError(HttpServletRequest req, Exception ex) {
+
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("exception", ex);
+	    mav.addObject("url", req.getRequestURL());
+	    mav.setViewName("runtime_error");
+	    return mav;
+	  }
 }
