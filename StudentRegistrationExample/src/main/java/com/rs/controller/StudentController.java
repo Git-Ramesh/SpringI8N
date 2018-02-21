@@ -18,12 +18,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rs.command.Student;
+import com.rs.editor.StudentNameEditor;
 
 @Controller
 public class StudentController {
 	public StudentController() {
 		System.out.println("StudentController: 0-param constr");
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+		binder.registerCustomEditor(Date.class,"dob",new CustomDateEditor(df, true));
+		binder.registerCustomEditor(String.class,"studentName",new StudentNameEditor());
+		//binder.setDisallowedFields("phone");
+	}
+
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String registerPage(@ModelAttribute("student")Student student) {
@@ -73,10 +83,5 @@ public class StudentController {
 		citiesList.add("Other");
 		
 		return citiesList;
-	}
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-		binder.registerCustomEditor(Date.class,"dob",new CustomDateEditor(df, true));
 	}
 }
